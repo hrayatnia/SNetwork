@@ -8,7 +8,7 @@ public enum HTTPMethod: String {
 }
 
 extension HTTPMethod: Requestable {
-    func set(_ request: Request) -> Request {
+    public func set(_ request: Request) -> Request {
         request.httpMethod = self.rawValue
         return request
     }

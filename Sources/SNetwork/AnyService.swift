@@ -1,4 +1,4 @@
-open protocol AnyService: AnyObject {
+public protocol AnyService: AnyObject {
     associatedtype Response: Decodable
     associatedtype ServiceError: Error
     var network: NetworkAdapter { get }
@@ -7,7 +7,7 @@ open protocol AnyService: AnyObject {
 }
 
 extension AnyService {
-    func run() {
+    public func run() {
         network.run(request: request) { [weak self] result in
             self?.result = result
         }

@@ -4,9 +4,8 @@ public enum NetworkTimeout: Double {
     case long = 60.0
 }
 
-public extension NetworkTimeout: Requestable {
-    
-    func set(_ request: Request) -> Request {
+extension NetworkTimeout: Requestable {
+    public func set(_ request: Request) -> Request {
         request.timeoutInterval = self.rawValue
         return request
     }

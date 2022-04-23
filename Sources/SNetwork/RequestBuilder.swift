@@ -1,6 +1,6 @@
 import Foundation
 
-open protocol Requestable {
+public protocol Requestable {
     @discardableResult
     func set(_ request: Request) -> Request
 }
@@ -9,7 +9,7 @@ open protocol Requestable {
 @propertyWrapper
 public struct RequestBuilder {
     var requestable: [Requestable]
-    var wrappedValue: Request? {
+    public var wrappedValue: Request? {
         didSet {
             guard let wrappedValue = wrappedValue else {
                 return
