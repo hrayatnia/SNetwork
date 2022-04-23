@@ -9,11 +9,8 @@ public protocol Requestable {
 @propertyWrapper
 public struct RequestBuilder {
     var requestable: [Requestable]
-    public var wrappedValue: Request? {
+    public var wrappedValue: Request {
         didSet {
-            guard let wrappedValue = wrappedValue else {
-                return
-            }
             self.wrappedValue = bind(wrappedValue)
         }
     }
