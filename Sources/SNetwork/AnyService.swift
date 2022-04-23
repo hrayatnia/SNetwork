@@ -1,4 +1,4 @@
-protocol AnyService: AnyObject {
+open protocol AnyService: AnyObject {
     associatedtype Response: Decodable
     associatedtype ServiceError: Error
     var network: NetworkAdapter { get }

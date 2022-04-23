@@ -1,13 +1,13 @@
 import Foundation
 
-protocol Requestable {
+open protocol Requestable {
     @discardableResult
     func set(_ request: Request) -> Request
 }
 
 
 @propertyWrapper
-struct RequestBuilder {
+public struct RequestBuilder {
     var requestable: [Requestable]
     var wrappedValue: Request? {
         didSet {
@@ -28,4 +28,4 @@ struct RequestBuilder {
 }
 
 
-func requestableArray(@ArrayBuilder<String> block: () -> [String]) -> [String] { block() }
+public func requestableArray(@ArrayBuilder<String> block: () -> [String]) -> [String] { block() }
