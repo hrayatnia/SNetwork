@@ -1,4 +1,4 @@
 public protocol NetworkAdapter {
-    func run<Response: Decodable, ServiceError: Error>(request: Request,
-             response: @escaping (Result<Response, ServiceError>)->())
+    func run<Response: Decodable>(request: Request,
+             response: @escaping (Result<Response, Error>)->())
 }

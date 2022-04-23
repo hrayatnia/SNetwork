@@ -1,9 +1,8 @@
 public protocol AnyService: AnyObject {
     associatedtype Response: Decodable
-    associatedtype ServiceError: Error
     var network: NetworkAdapter { get }
     var request: Request { get }
-    var result: Result<Response, ServiceError> { get set }
+    var result: Result<Response, Error> { get set }
 }
 
 extension AnyService {
