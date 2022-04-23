@@ -2,7 +2,7 @@ public protocol AnyService: AnyObject {
     associatedtype Response: Decodable
     var network: NetworkAdapter { get }
     var request: Request { get }
-    var result: Result<Response, Error> { get set }
+    var result: Result<Response, Error>? { get set }
 }
 
 extension AnyService {
