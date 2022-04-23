@@ -7,8 +7,8 @@ public protocol AnyService: AnyObject {
 
 extension AnyService {
     public func run() {
-        network.run(request: request) { [weak self] result in
-            self?.result = result
+        network.run(request: request) { [unowned self] result in
+            self.result = result
         }
     }
 }
