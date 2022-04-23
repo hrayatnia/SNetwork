@@ -25,4 +25,4 @@ public struct RequestBuilder {
 }
 
 
-public func requestableArray(@ArrayBuilder<String> block: () -> [String]) -> [String] { block() }
+public func requestableArray(@ArrayBuilder<Requestable> block: () -> [Requestable]) -> [Requestable] { block() }
