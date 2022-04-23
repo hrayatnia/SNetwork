@@ -8,7 +8,7 @@ public protocol Requestable {
 
 @propertyWrapper
 public struct RequestBuilder {
-    var requestable: [Requestable]
+    public var requestable: [Requestable]
     public var wrappedValue: Request {
         didSet {
             self.wrappedValue = bind(wrappedValue)
