@@ -1,0 +1,39 @@
+language: swift
+os: osx
+osx_image: xcode15
+
+env:
+  global:
+    - LCOV_OUTPUT=info.lcov
+    - PROFDATA_FILE=".build/debug/codecov/default.profdata"
+    - TEST_EXECUTABLE=".build/debug/SwiftLoggerPackageTests.xctest"
+
+stages:
+  - check-tools
+  - build
+  - test
+  - doc-cov
+
+jobs:
+  include:
+    - stage: check-tools
+      script: ./scripts/check_tools.sh  # Pre-check required tools
+
+    - stage: build
+      script: ./scripts/build.sh
+
+    - stage: test
+      script: ./scripts/test.sh
+
+    - stage: parallel-doc-cov
+      script: ./scripts/codecov.sh
+      if: branch = main
+
+    - stage: parallel-doc-cov
+      script: ./scripts/doc.sh
+      if: branch = main
+
+notifications:
+  email:
+    on_success: never
+    on_failure: change
