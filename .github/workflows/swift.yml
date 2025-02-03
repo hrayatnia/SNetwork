@@ -16,17 +16,10 @@ jobs:
   check-tools:
     name: Check Tools
     runs-on: macos-15
-    outputs:
-      tools-status: ${{ steps.tool-check.outputs.status }} # Example output
     steps:
       - uses: actions/checkout@v4
       - name: Run tool check
-        id: tool-check
         run: ./scripts/check_tools.sh
-        # Set output from the tool check
-        continue-on-error: true
-        outputs:
-          status: ${{ steps.tool-check.outcome }}
 
   build:
     name: Build
