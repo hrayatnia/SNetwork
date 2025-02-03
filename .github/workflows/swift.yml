@@ -48,7 +48,6 @@ jobs:
     name: Coverage
     runs-on: macos-15
     needs: test
-    if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
       - name: Run coverage
@@ -58,7 +57,6 @@ jobs:
     name: Documentation
     runs-on: macos-15
     needs: test
-    if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
       - name: Generate documentation
