@@ -7,20 +7,24 @@
 @testable import SNetwork
 import Foundation
 
+// Mock Service Implementation for Testing
 struct TestService: AnyService {
-   
-
-    typealias Request = String
+    var request: String
+    
     typealias Response = String
     
-    let request: String
-    
-    init(_ request: String) {
-        self.request = request
-    }
-    
-    func send() async throws -> Response {
-        try await Task.sleep(nanoseconds: 1_000_000)
+    func send() async throws -> String {
+        try await Task.sleep(nanoseconds: 100_000_000)
         return request + "!"
+    }
+}
+
+
+struct ErrorService: AnyService {
+    var request: String
+    typealias Response = String
+    
+    func send() async throws -> String {
+        throw NSError()
     }
 }
