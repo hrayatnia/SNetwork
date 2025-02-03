@@ -18,7 +18,8 @@ echo "📊 Exporting coverage data to LCOV format..."
 $LLVM_COV_CMD export -format="lcov" "$TEST_EXECUTABLE" -instr-profile "$PROFDATA_FILE" > "$LCOV_OUTPUT"
 
 echo "📡 Uploading coverage to Codecov..."
-bash <(curl -s https://codecov.io/bash) -t $CODE_COV_TOKEN || { echo "❌ Codecov upload failed."; exit 1; }
+bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN || { echo "❌ Codecov upload failed."; exit 1; }
+
 
 rm -rf *.coverage.txt
 
