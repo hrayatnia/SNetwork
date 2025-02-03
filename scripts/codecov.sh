@@ -2,6 +2,9 @@
 
 set -e
 
+
+
+
 LLVM_COV_CMD="llvm-cov"
 if [[ "$OSTYPE" == "darwin"* ]]; then
     LLVM_COV_CMD="xcrun llvm-cov"
@@ -14,6 +17,7 @@ if [[ ! -f "$PROFDATA_FILE" || ! -f "$TEST_EXECUTABLE" ]]; then
     exit 1
 fi
 
+ls -la
 echo "📊 Exporting coverage data to LCOV format..."
 $LLVM_COV_CMD export -format="lcov" "$TEST_EXECUTABLE" -instr-profile "$PROFDATA_FILE" > "$LCOV_OUTPUT"
 
