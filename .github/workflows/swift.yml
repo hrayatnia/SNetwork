@@ -19,7 +19,7 @@ env:
 jobs:
   check-tools:
     name: Check Tools
-    runs-on: macos-13
+    runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
       - name: Run tool check
@@ -27,7 +27,7 @@ jobs:
 
   build:
     name: Build
-    runs-on: macos-13
+    runs-on: macos-15
     needs: check-tools
     steps:
       - uses: actions/checkout@v4
@@ -36,7 +36,7 @@ jobs:
 
   test:
     name: Test
-    runs-on: macos-13
+    runs-on: macos-15
     needs: build
     steps:
       - uses: actions/checkout@v4
@@ -45,7 +45,7 @@ jobs:
 
   coverage:
     name: Coverage
-    runs-on: macos-13
+    runs-on: macos-15
     needs: test
     if: github.ref == 'refs/heads/main'
     steps:
@@ -55,7 +55,7 @@ jobs:
 
   documentation:
     name: Documentation
-    runs-on: macos-13
+    runs-on: macos-15
     needs: test
     if: github.ref == 'refs/heads/main'
     steps:
