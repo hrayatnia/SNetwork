@@ -29,12 +29,12 @@ jobs:
       - name: Cache build outputs
         uses: actions/cache@v4
         with:
-          path: .build  # Cache the entire .build folder
-          key: build-${{ runner.os }}-${{ hashFiles('**/*.swift') }}  # Cache key based on source files
+          path: .build
+          key: build-${{ runner.os }}-${{ hashFiles('**/*') }}
           restore-keys: |
             build-${{ runner.os }}-
       - name: Build
-        run: ./scripts/build.sh
+        run: swift build --disable-sandbox
 
   test:
     name: Test
@@ -46,7 +46,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .build
-          key: build-${{ runner.os }}-${{ hashFiles('**/*.swift') }}
+          key: build-${{ runner.os }}-${{ hashFiles('**/*') }}
           restore-keys: |
             build-${{ runner.os }}-
       - name: Run tests
@@ -62,7 +62,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .build
-          key: build-${{ runner.os }}-${{ hashFiles('**/*.swift') }}
+          key: build-${{ runner.os }}-${{ hashFiles('**/*') }}
           restore-keys: |
             build-${{ runner.os }}-
       - name: Set test executable path
@@ -80,7 +80,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .build
-          key: build-${{ runner.os }}-${{ hashFiles('**/*.swift') }}
+          key: build-${{ runner.os }}-${{ hashFiles('**/*') }}
           restore-keys: |
             build-${{ runner.os }}-
       - name: Generate documentation
