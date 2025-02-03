@@ -14,7 +14,8 @@ env:
   TEST_POSTFIX: "PackageTests"
   LCOV_OUTPUT: "cov/info.lcov"
   PROFDATA_FILE: ".build/debug/codecov/default.profdata"
-  TEST_EXECUTABLE: ".build/debug/${{ env.PACKAGE_NAME }}${{ env.TEST_POSTFIX }}.xctest/Contents/MacOS/${{ env.PACKAGE_NAME }}${{ env.TEST_POSTFIX }}"
+  TEST_EXECUTABLE: ".build/debug/${PACKAGE_NAME}${TEST_POSTFIX}.xctest/Contents/MacOS/${PACKAGE_NAME}${TEST_POSTFIX}"
+
 
 jobs:
   check-tools:
