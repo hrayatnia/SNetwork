@@ -11,13 +11,13 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 echo "$TEST_EXECUTABLE"
+ls -la
 # Ensure coverage files exist
 if [[ ! -f "$PROFDATA_FILE" || ! -f "$TEST_EXECUTABLE" ]]; then
     echo "❌ Error: Coverage data not found."
     exit 1
 fi
 
-ls -la
 echo "📊 Exporting coverage data to LCOV format..."
 $LLVM_COV_CMD export -format="lcov" "$TEST_EXECUTABLE" -instr-profile "$PROFDATA_FILE" > "$LCOV_OUTPUT"
 
