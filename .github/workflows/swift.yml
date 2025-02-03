@@ -35,7 +35,7 @@ jobs:
           restore-keys: |
             build-${{ runner.os }}-
       - name: Build
-        run: swift build --disable-sandbox
+        run: /scripts/build.sh
 
   test:
     name: Test
@@ -75,6 +75,7 @@ jobs:
     name: Documentation
     runs-on: macos-15
     needs: test
+    if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
       - name: Cache build outputs
@@ -86,3 +87,29 @@ jobs:
             build-${{ runner.os }}-
       - name: Generate documentation
         run: ./scripts/doc.sh
+      - name: Upload Documentation Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation
+          path: ./docs
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          branch: gh-pages
+
+  release:
+    name: Version & Release
+    runs-on: macos-15
+    needs: [documentation]
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Versioning Script
+        run: ./scripts/version.sh
+      - name: Commit Version Changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Release ${{ env.NEW_VERSION }}"
+          tagging_message: "${{ env.NEW_VERSION }}"
