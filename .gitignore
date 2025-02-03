@@ -104,3 +104,8 @@ info.lcov
 # SPM
 Package.resolved
 .swiftpm
+
+
+# Documentation
+docs/**
+docs/
