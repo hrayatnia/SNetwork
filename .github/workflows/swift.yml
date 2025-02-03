@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - develop
   pull_request:
 
 env:
@@ -76,9 +77,12 @@ jobs:
     name: Documentation
     runs-on: macos-15
     needs: test
-    if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
+
+      - name: Ensure docs directory exists
+        run: mkdir -p ./docs
+
       - name: Cache build outputs
         uses: actions/cache@v4
         with:
@@ -86,6 +90,7 @@ jobs:
           key: build-${{ runner.os }}-${{ hashFiles('**/*') }}
           restore-keys: |
             build-${{ runner.os }}-
+
       - name: Generate documentation
         run: ./scripts/doc.sh
       - name: Upload Documentation Artifact
@@ -99,6 +104,19 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
           branch: gh-pages
+
+      - name: Upload Documentation Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation
+          path: ./docs
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: docs
+          clean: true  # Removes old files but keeps new ones
 
   release:
     name: Version & Release

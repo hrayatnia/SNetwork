@@ -9,6 +9,7 @@ import Foundation
 
 /// AnyService
 /// A protocol defining a service that can send a request and receive a response asynchronously.
+/// please also see: `send:`
 public protocol AnyService: ~Copyable, Sendable {
     /// The type of the request associated with the service.
     associatedtype Request
