@@ -93,6 +93,17 @@ jobs:
 
       - name: Generate documentation
         run: ./scripts/doc.sh
+      - name: Upload Documentation Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation
+          path: ./docs
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          branch: gh-pages
 
       - name: Upload Documentation Artifact
         uses: actions/upload-artifact@v4
