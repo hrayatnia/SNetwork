@@ -1,0 +1,65 @@
+# This workflow will build a Swift project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
+
+name: Swift CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+env:
+  PACKAGE_NAME: "SNetwork"
+  TEST_POSTFIX: "PackageTests"
+  LCOV_OUTPUT: "cov/info.lcov"
+  PROFDATA_FILE: ".build/debug/codecov/default.profdata"
+  TEST_EXECUTABLE: ".build/debug/${{ env.PACKAGE_NAME }}${{ env.TEST_POSTFIX }}.xctest/Contents/MacOS/${{ env.PACKAGE_NAME }}${{ env.TEST_POSTFIX }}"
+
+jobs:
+  check-tools:
+    name: Check Tools
+    runs-on: macos-13
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run tool check
+        run: ./scripts/check_tools.sh
+
+  build:
+    name: Build
+    runs-on: macos-13
+    needs: check-tools
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        run: ./scripts/build.sh
+
+  test:
+    name: Test
+    runs-on: macos-13
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run tests
+        run: ./scripts/test.sh
+
+  coverage:
+    name: Coverage
+    runs-on: macos-13
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run coverage
+        run: ./scripts/codecov.sh
+
+  documentation:
+    name: Documentation
+    runs-on: macos-13
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate documentation
+        run: ./scripts/doc.sh
+
