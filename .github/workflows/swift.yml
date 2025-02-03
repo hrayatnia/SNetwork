@@ -11,6 +11,7 @@ env:
   TEST_POSTFIX: "PackageTests"
   PROFDATA_FILE: ".build/debug/codecov/default.profdata"
   LCOV_OUTPUT: "cov/info.lcov"
+  CODECOV_TOKEN: ${{ secrets.CODE_COV_TOKEN }}
 
 jobs:
   check-tools:
