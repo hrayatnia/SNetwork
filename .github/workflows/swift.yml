@@ -35,7 +35,7 @@ jobs:
           restore-keys: |
             build-${{ runner.os }}-
       - name: Build
-        run: /scripts/build.sh
+        run: ./scripts/build.sh
 
   test:
     name: Test
@@ -102,7 +102,7 @@ jobs:
   release:
     name: Version & Release
     runs-on: macos-15
-    needs: [documentation]
+    needs: [documentation, coverage]
     if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
