@@ -14,7 +14,7 @@ env:
   TEST_POSTFIX: "PackageTests"
   LCOV_OUTPUT: "cov/info.lcov"
   PROFDATA_FILE: ".build/debug/codecov/default.profdata"
-  TEST_EXECUTABLE: ".build/debug/${PACKAGE_NAME}${TEST_POSTFIX}.xctest/Contents/MacOS/${PACKAGE_NAME}${TEST_POSTFIX}"
+  TEST_EXECUTABLE: ".build/debug/$PACKAGE_NAME$TEST_POSTFIX.xctest/Contents/MacOS/$PACKAGE_NAME$TEST_POSTFIX"
 
 
 jobs:
@@ -48,7 +48,6 @@ jobs:
     name: Coverage
     runs-on: macos-15
     needs: test
-    if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
       - name: Run coverage
@@ -58,7 +57,6 @@ jobs:
     name: Documentation
     runs-on: macos-15
     needs: test
-    if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
       - name: Generate documentation
