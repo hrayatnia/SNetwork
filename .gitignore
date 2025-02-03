@@ -96,3 +96,11 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+
+# Coverage
+*.coverage.txt
+info.lcov
+
+# SPM
+Package.resolved
+.swiftpm

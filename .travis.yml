@@ -1,0 +1,42 @@
+language: swift
+os: osx
+osx_image: xcode16.2
+
+env:
+  global:
+    - PACKAGE_NAME="SNetwork"
+    - TEST_POSTFIX="PackageTests"
+    - LCOV_OUTPUT="cov/info.lcov"
+    - PROFDATA_FILE=".build/debug/codecov/default.profdata"
+    - TEST_EXECUTABLE=".build/debug/$PACKAGE_NAME$TEST_POSTFIX.xctest/Contents/MacOS/$PACKAGE_NAME$TEST_POSTFIX"
+
+stages:
+  - check-tools
+  - build
+  - test
+  - cov
+  - doc
+
+jobs:
+  include:
+    - stage: check-tools
+      script: ./scripts/check_tools.sh  # Pre-check required tools
+
+    - stage: build
+      script: ./scripts/build.sh
+
+    - stage: test
+      script: ./scripts/test.sh
+
+    - stage: cov
+      script: ./scripts/codecov.sh
+      if: branch == main
+
+    - stage: doc
+      script: ./scripts/doc.sh
+      if: branch == main
+
+notifications:
+  email:
+    on_success: never
+    on_failure: change
