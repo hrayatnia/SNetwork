@@ -101,12 +101,11 @@ jobs:
           path: ./docs
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
           branch: gh-pages
-          keep_files: false  # Ensures only docs are retained
+          folder: docs
+          clean: true  # Removes old files but keeps new ones
 
   release:
     name: Version & Release
