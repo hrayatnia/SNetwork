@@ -14,7 +14,6 @@ env:
   LCOV_OUTPUT: "cov/info.lcov"
   CODECOV_TOKEN: ${{ secrets.CODE_COV_TOKEN }}
 
-
 jobs:
   check-tools:
     name: Check Tools
@@ -80,6 +79,10 @@ jobs:
     needs: test
     steps:
       - uses: actions/checkout@v4
+
+      - name: Ensure docs directory exists
+        run: mkdir -p ./docs
+
       - name: Cache build outputs
         uses: actions/cache@v4
         with:
@@ -87,19 +90,23 @@ jobs:
           key: build-${{ runner.os }}-${{ hashFiles('**/*') }}
           restore-keys: |
             build-${{ runner.os }}-
+
       - name: Generate documentation
         run: ./scripts/doc.sh
+
       - name: Upload Documentation Artifact
         uses: actions/upload-artifact@v4
         with:
           name: documentation
           path: ./docs
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
           branch: gh-pages
+          keep_files: false  # Ensures only docs are retained
 
   release:
     name: Version & Release
