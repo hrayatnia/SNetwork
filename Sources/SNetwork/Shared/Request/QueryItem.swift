@@ -7,8 +7,10 @@
 
 import Foundation
 
+@available(iOS 12.0, macOS 10.14, tvOS 12.0, watchOS 5.0, *)
 public typealias QueryItem = URLQueryItem
 
+@available(iOS 12.0, macOS 10.14, tvOS 12.0, watchOS 5.0, *)
 extension QueryItem: Requestable {
     
     /// Adds the query item to the request's URL components.

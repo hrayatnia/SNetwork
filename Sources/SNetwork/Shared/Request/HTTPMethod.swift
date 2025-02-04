@@ -5,7 +5,9 @@
 //  Created by Sam Rayatnia on 04.02.25.
 //
 
+@frozen
 
+@available(iOS 12.0, macOS 10.14, tvOS 12.0, watchOS 5.0, *)
 public enum HTTPMethod: String {
     /// The HTTP GET method.
     case GET = "GET"
@@ -26,6 +28,7 @@ public enum HTTPMethod: String {
     case PATCH = "PATCH"
 }
 
+@available(iOS 12.0, macOS 10.14, tvOS 12.0, watchOS 5.0, *)
 extension HTTPMethod: Requestable {
     /// Sets the HTTP method for the request.
     ///

@@ -7,8 +7,10 @@
 
 import Foundation
 
+@available(iOS 12.0, macOS 10.14, tvOS 12.0, watchOS 5.0, *)
 public typealias URIPath = String
 
+@available(iOS 12.0, macOS 10.14, tvOS 12.0, watchOS 5.0, *)
 extension URIPath: Requestable {
     
     /// Appends the URI path component to the request's URL.
