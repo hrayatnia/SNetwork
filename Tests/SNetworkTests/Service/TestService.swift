@@ -9,9 +9,12 @@ import Foundation
 
 // Mock Service Implementation for Testing
 struct TestService: AnyService {
-    var request: String
     
     typealias Response = String
+    
+    let request: String
+    
+    let destination: String
     
     func send() async throws -> String {
         try await Task.sleep(nanoseconds: 100_000_000)
@@ -21,10 +24,13 @@ struct TestService: AnyService {
 
 
 struct ErrorService: AnyService {
-    var request: String
-    typealias Response = String
+   
+    typealias Response = Void
     
-    func send() async throws -> String {
+    let request: Void
+    let destination: Void
+    
+    func send() async throws -> Void {
         throw NSError()
     }
 }
