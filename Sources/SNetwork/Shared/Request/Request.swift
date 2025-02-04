@@ -28,6 +28,7 @@ extension Request {
     /// let modifiedRequest = request.applying(data)
     /// // The modifiedRequest will have the data as its HTTP body
     /// ```
+    @discardableResult
     public func applying<T: Requestable>(_ requestable: T) -> Request {
         return requestable.apply(to: self)
     }

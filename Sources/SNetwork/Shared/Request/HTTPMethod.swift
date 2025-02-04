@@ -51,3 +51,10 @@ extension HTTPMethod: Requestable {
         return request
     }
 }
+
+
+#if DEBUG
+extension HTTPMethod: CaseIterable {
+    
+}
+#endif
