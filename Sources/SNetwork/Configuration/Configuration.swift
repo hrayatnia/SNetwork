@@ -15,7 +15,8 @@ import Foundation
 ///
 /// - Note: This struct is frozen and cannot be extended with new stored properties.
 @frozen
-public struct Configuration {
+@available(iOS 12.0, macOS 10.14, tvOS 12.0, watchOS 5.0, *)
+public struct Configuration: Sendable {
     
     /// The underlying `URLSessionConfiguration` instance.
     private var configuration: URLSessionConfiguration
@@ -32,6 +33,7 @@ public struct Configuration {
     }
 }
 
+@available(iOS 12.0, macOS 10.14, tvOS 12.0, watchOS 5.0, *)
 public extension Configuration {
         
     /// Sets a network header.
@@ -39,8 +41,8 @@ public extension Configuration {
     /// - Parameter header: The `NetworkHeader` to apply.
     /// - Returns: A new `Configuration` instance with the updated header.
     @discardableResult
-    func set(_ header: NetworkHeader) -> Self {
-        configuration.httpAdditionalHeaders = header.header
+    func set(_ header: some NetworkHeader) -> Self {
+        configuration.httpAdditionalHeaders = header.headers
         return self
     }
     

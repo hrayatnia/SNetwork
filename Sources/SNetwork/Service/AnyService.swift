@@ -15,6 +15,7 @@ import Foundation
 ///
 /// - Note: This protocol supports both async/await and alternative synchronous access patterns.
 /// - SeeAlso: `send()`
+@available(iOS 12.0, macOS 10.14, tvOS 12.0, watchOS 5.0, *)
 public protocol AnyService: ~Copyable, Sendable {
     /// The type of the request associated with the service.
     associatedtype Request

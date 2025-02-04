@@ -26,7 +26,8 @@ struct ConfigurationBuilderTests {
     
     @Test("header setting test")
     func testSetHeader() {
-        let header = TestNetworkHeader(header: ["Authorization": "Bearer token"])
+        var header = TestNetworkHeader()
+        header.Authorization = "Bearer token"
         let config = Configuration()
             .set(header)
         
@@ -141,5 +142,11 @@ struct ConfigurationBuilderTests {
 }
 
 struct TestNetworkHeader: NetworkHeader {
-    var header: [String : String]
+    
+    enum TestNetworkHeaderKey: String {
+        case test
+    }
+    
+    var headers: [String : AnyHashable]  = [TestNetworkHeaderKey.test.rawValue: ""]
+    
 }
