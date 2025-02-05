@@ -6,16 +6,17 @@
 //
 
 import Testing
+import Foundation
 @testable import SNetwork
 
 @Suite("Network Session Tests")
 public struct SessionTests {
-    private var session: any Session
     
     
     @Test("")
     func testSessionCreation() {
-        
+        var session = NetworkSession(session: URLSession.shared,
+                                     configuration: .init(type: .default))
     }
     
 }

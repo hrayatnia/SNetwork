@@ -16,13 +16,13 @@ public protocol Session: ~Copyable, Sendable {
 @frozen
 @available(iOS 12.0, macOS 10.14, tvOS 12.0, watchOS 5.0, *)
 public struct NetworkSession:~Copyable, Session {
-    public typealias ConfigurationType = NetworkConfiguration
+    public typealias ConfigType = NetworkConfiguration
 
     private(set) public var session: URLSession
     
-    public let configuration: ConfigurationType
+    public let configuration: ConfigType
     
-    init(session: URLSession, configuration: ConfigurationType) {
+    init(session: URLSession, configuration: ConfigType) {
         self.session = session
         self.configuration = configuration
     }
