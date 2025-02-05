@@ -8,6 +8,12 @@
 import Foundation
 
 
+@available(iOS 12.0, macOS 10.14, tvOS 12.0, watchOS 5.0, *)
+public protocol Configuration: Sendable {
+    var configuration: URLSessionConfiguration { get }
+    var type: ConfigurationType { get }
+}
+
 /// A structure that provides a configurable wrapper around `URLSessionConfiguration`.
 ///
 /// `Configuration` allows setting various networking parameters, including headers,
@@ -16,13 +22,13 @@ import Foundation
 /// - Note: This struct is frozen and cannot be extended with new stored properties.
 @frozen
 @available(iOS 12.0, macOS 10.14, tvOS 12.0, watchOS 5.0, *)
-public struct Configuration: Sendable {
+public struct NetworkConfiguration: Configuration, Sendable {
     
     /// The underlying `URLSessionConfiguration` instance.
-    private var configuration: URLSessionConfiguration
+    fileprivate(set) public var configuration: URLSessionConfiguration
     
     /// The type of configuration being used.
-    internal let type: ConfigurationType
+    public let type: ConfigurationType
     
     /// Initializes a new configuration with a specified type.
     ///
@@ -34,7 +40,7 @@ public struct Configuration: Sendable {
 }
 
 @available(iOS 12.0, macOS 10.14, tvOS 12.0, watchOS 5.0, *)
-public extension Configuration {
+public extension Configuration where Self == NetworkConfiguration {
         
     /// Sets a network header.
     ///
@@ -80,6 +86,9 @@ public extension Configuration {
     ///
     /// - Parameter httpShouldHandleCookies: A Boolean value indicating cookie handling.
     /// - Returns: A new `Configuration` instance with the updated setting.
+    ///  @Metadata {
+    ///   @Documentation(filename: "allowingCookies")
+    /// }
     @discardableResult
     func allowingCookies(_ shouldAllow: Bool) -> Self {
         configuration.httpShouldSetCookies = shouldAllow
@@ -90,6 +99,9 @@ public extension Configuration {
     ///
     /// - Parameter allowsCellularAccess: A Boolean value indicating cellular access.
     /// - Returns: A new `Configuration` instance with the updated setting.
+    /// @Metadata {
+    ///   @Documentation(filename: "allowingCellularAccess")
+    /// }
     @discardableResult
     func allowingCellularAccess(_ isAllowed: Bool) -> Self {
         configuration.allowsCellularAccess = isAllowed
@@ -100,6 +112,9 @@ public extension Configuration {
     ///
     /// - Parameter waitForConnectivity: A Boolean value indicating waiting behavior.
     /// - Returns: A new `Configuration` instance with the updated setting.
+    /// @Metadata {
+    ///   @Documentation(filename: "waitingForConnectivity")
+    /// }
     @discardableResult
     func waitingForConnectivity(_ shouldWait: Bool) -> Self {
         configuration.waitsForConnectivity = shouldWait
@@ -130,6 +145,9 @@ public extension Configuration {
     ///
     /// - Parameter httpShouldUsePipelining: A Boolean value indicating pipelining usage.
     /// - Returns: A new `Configuration` instance with the updated setting.
+    ///  @Metadata {
+    ///   @Documentation(filename: "usingHTTPPipelining")
+    /// }
     @discardableResult
     func usingHTTPPipelining(_ shouldUse: Bool) -> Self {
         configuration.httpShouldUsePipelining = shouldUse

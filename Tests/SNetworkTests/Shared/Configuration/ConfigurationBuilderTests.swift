@@ -14,7 +14,7 @@ struct ConfigurationBuilderTests {
     
     @Test("build default configuration")
     func buildDefaultConfiguration() {
-        var configuration: Configuration = .init()
+        var configuration: NetworkConfiguration = .init()
         #expect(configuration.type == .default)
         configuration = .init(type: .ephemeral)
         #expect(configuration.type == .ephemeral)
@@ -28,7 +28,7 @@ struct ConfigurationBuilderTests {
     func testSetHeader() {
         var header = TestNetworkHeader()
         header.Authorization = "Bearer token"
-        let config = Configuration()
+        let config = NetworkConfiguration()
             .set(header)
         
         let builtConfig = config.build
@@ -39,7 +39,7 @@ struct ConfigurationBuilderTests {
     
     @Test("ensure cache policy is set correctly")
     func testSetCachePolicy() {
-        let config = Configuration()
+        let config = NetworkConfiguration()
             .set(.reloadIgnoringLocalCacheData)
         
         let builtConfig = config.build
@@ -50,7 +50,7 @@ struct ConfigurationBuilderTests {
     @Test("validate timeout interval")
     func testSetTimeoutInterval() {
         let timeout: TimeInterval = 30
-        let config = Configuration()
+        let config = NetworkConfiguration()
             .set(timeout)
         
         let builtConfig = config.build
@@ -61,7 +61,7 @@ struct ConfigurationBuilderTests {
     @Test("cache policy is set correctly")
     func testSetURLCache() {
         let urlCache = URLCache(memoryCapacity: 51200, diskCapacity: 102400, diskPath: nil)
-        let config = Configuration()
+        let config = NetworkConfiguration()
             .set(urlCache)
         
         let builtConfig = config.build
@@ -71,7 +71,7 @@ struct ConfigurationBuilderTests {
     
     @Test("check if cookies are allowed")
     func testAllowingCookies() {
-        let config = Configuration()
+        let config = NetworkConfiguration()
             .allowingCookies(true)
         
         let builtConfig = config.build
@@ -81,7 +81,7 @@ struct ConfigurationBuilderTests {
     
     @Test("check allowing cellular access is set correctly")
     func testAllowingCellularAccess() {
-        let config = Configuration()
+        let config = NetworkConfiguration()
             .allowingCellularAccess(false)
         
         let builtConfig = config.build
@@ -91,7 +91,7 @@ struct ConfigurationBuilderTests {
     
     @Test("allow to wait for connectivity")
     func testWaitingForConnectivity() {
-        let config = Configuration()
+        let config = NetworkConfiguration()
             .waitingForConnectivity(true)
         
         let builtConfig = config.build
@@ -102,7 +102,7 @@ struct ConfigurationBuilderTests {
     @Test("set request timeout")
     func testSetRequestTimeout() {
         let timeout: TimeInterval = 60
-        let config = Configuration()
+        let config = NetworkConfiguration()
             .set(requestTimeout: timeout)
         
         let builtConfig = config.build
@@ -113,7 +113,7 @@ struct ConfigurationBuilderTests {
     @Test
     func testSetResponseTimeout() {
         let timeout: TimeInterval = 120
-        let config = Configuration()
+        let config = NetworkConfiguration()
             .set(responseTimeout: timeout)
         
         let builtConfig = config.build
@@ -123,7 +123,7 @@ struct ConfigurationBuilderTests {
     
     @Test
     func testUsingHTTPPipelining() {
-        let config = Configuration()
+        let config = NetworkConfiguration()
             .usingHTTPPipelining(true)
         
         let builtConfig = config.build
@@ -133,7 +133,7 @@ struct ConfigurationBuilderTests {
     
     @Test
     func testSetCustomProperty() {
-        var config = Configuration()
+        var config = NetworkConfiguration()
         config.set(\.allowsExpensiveNetworkAccess, to: false)
         let builtConfig = config.build
         
