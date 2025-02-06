@@ -15,7 +15,7 @@ protocol ContainerRegistry {
 
 @available(iOS 13.0, macOS 13, tvOS 13.0, watchOS 6.0, *)
 extension ContainerRegistry {
-    func resolve<T>(_ type: T.Type) -> (StoredType)? {
+    public func resolve<T>(_ type: T.Type) -> (StoredType)? {
         return container[String(describing: type)]
     }
 }

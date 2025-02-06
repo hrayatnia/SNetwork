@@ -66,10 +66,10 @@ public struct NetworkSession: Session {
 }
 
 
-struct NetworkSessionContainerRegistry: ContainerRegistry {
+public struct NetworkSessionContainerRegistry: ContainerRegistry, Sendable {
     var container: [String : any Session] = [:]
     
-    static let shared: NetworkSessionContainerRegistry = .init()
+    public static let shared: NetworkSessionContainerRegistry = .init()
     
     mutating func register<T>(_ type: T.Type, _ value: any Session) {
         container[String(describing: type)] = value

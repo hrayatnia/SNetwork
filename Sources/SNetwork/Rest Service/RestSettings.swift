@@ -9,10 +9,10 @@ import Foundation
 @available(iOS 13.0, macOS 13, tvOS 13.0, watchOS 6.0, *)
 public struct RestSettings<DecoderType: Sendable>: Settings, Sendable {
     
-    typealias ValidatorType = RestValidator
-    var baseURL: URL
+    public typealias ValidatorType = RestValidator
+    public var baseURL: URL
     var decoder: DecoderType
-    var validator: [any RestValidator]
+    public var validator: [any RestValidator]
     
     internal init(baseURL: URL,
          decoder: DecoderType,

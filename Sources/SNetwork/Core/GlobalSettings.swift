@@ -7,19 +7,19 @@
 import Foundation
 
 @available(iOS 13.0, macOS 13, tvOS 13.0, watchOS 6.0, *)
-protocol Settings: Sendable {
+public protocol Settings: Sendable {
     associatedtype ValidatorType
     var baseURL: URL { get }
     var validator: Array<ValidatorType> { get }
 }
 
 @available(iOS 13.0, macOS 13, tvOS 13.0, watchOS 6.0, *)
-struct NetworkSettingsContainerRegistry: ContainerRegistry {
+public struct NetworkSettingsContainerRegistry: ContainerRegistry, Sendable {
     var container: [String : any Settings] = [:]
     
-    static let shared = NetworkSettingsContainerRegistry()
+    public static let shared = NetworkSettingsContainerRegistry()
     
-    mutating func register<T>(_ type: T.Type, _ value: any Settings) {
+    public mutating func register<T>(_ type: T.Type, _ value: any Settings) {
         container[String(describing: type)] = value
     }
 }
