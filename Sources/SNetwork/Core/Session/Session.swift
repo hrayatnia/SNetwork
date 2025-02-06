@@ -71,7 +71,7 @@ public struct NetworkSessionContainerRegistry: ContainerRegistry, Sendable {
     
     public static let shared: NetworkSessionContainerRegistry = .init()
     
-    mutating func register<T>(_ type: T.Type, _ value: any Session) {
+    public mutating func register<T>(_ type: T.Type, _ value: any Session) {
         container[String(describing: type)] = value
     }
     
