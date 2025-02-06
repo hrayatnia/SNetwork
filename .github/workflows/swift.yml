@@ -106,11 +106,14 @@ jobs:
           publish_dir: ./docs
           branch: gh-pages
 
+      - name: Archive Documentation
+        run: tar -czf docs.tar.gz -C docs .
+
       - name: Upload Documentation Artifact
         uses: actions/upload-artifact@v4
         with:
           name: documentation
-          path: ./docs
+          path: docs.tar.gz
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
