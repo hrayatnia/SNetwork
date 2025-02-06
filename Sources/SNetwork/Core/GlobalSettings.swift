@@ -17,7 +17,7 @@ public protocol Settings: Sendable {
 public struct NetworkSettingsContainerRegistry: ContainerRegistry, Sendable {
     var container: [String : any Settings] = [:]
     
-    public static let shared = NetworkSettingsContainerRegistry()
+    nonisolated(unsafe) public static var shared = NetworkSettingsContainerRegistry()
     
     public mutating func register<T>(_ type: T.Type, _ value: any Settings) {
         container[String(describing: type)] = value
