@@ -7,6 +7,7 @@
 
 import Foundation
 
+@available(iOS 13.0, macOS 13, tvOS 13.0, watchOS 6.0, *)
 public struct RestStatusCodeValidator: RestResponseValidator {
     public var isRequest: Bool = false
     
@@ -27,6 +28,7 @@ public struct RestStatusCodeValidator: RestResponseValidator {
 
 // Combined Enum for both status codes and error handling
 @frozen
+@available(iOS 13.0, macOS 13, tvOS 13.0, watchOS 6.0, *)
 public enum HTTPStatusCode: Int, CaseIterable {
     // Success cases
     case ok = 200, created = 201, accepted = 202, noContent = 204
@@ -75,6 +77,7 @@ public enum HTTPStatusCode: Int, CaseIterable {
 
 // Combined Error Enum for LocalizedError
 @frozen
+@available(iOS 13.0, macOS 13, tvOS 13.0, watchOS 6.0, *)
 public enum HTTPStatusCodeError: LocalizedError {
     // Redirection errors
     case movedPermanently(URL?)

@@ -7,13 +7,14 @@
 
 import Foundation
 
+@available(iOS 13.0, macOS 13, tvOS 13.0, watchOS 6.0, *)
 public extension NSMutableURLRequest {
     var toUrlRequest: URLRequest {
         return self as URLRequest
     }
 }
 
-
+@available(iOS 13.0, macOS 13, tvOS 13.0, watchOS 6.0, *)
 public extension String {
     
     

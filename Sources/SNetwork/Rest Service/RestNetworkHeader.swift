@@ -6,6 +6,7 @@
 //
 
 
+@available(iOS 13.0, macOS 13, tvOS 13.0, watchOS 6.0, *)
 public struct RestNetworkHeader: NetworkHeader {
     public typealias Key = String
     

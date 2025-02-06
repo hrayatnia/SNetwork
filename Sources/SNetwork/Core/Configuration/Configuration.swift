@@ -8,7 +8,7 @@
 import Foundation
 
 
-@available(iOS 12.0, macOS 10.14, tvOS 12.0, watchOS 5.0, *)
+@available(iOS 13.0, macOS 13, tvOS 13.0, watchOS 6.0, *)
 public protocol Configuration: Sendable {
     var configuration: URLSessionConfiguration { get }
 }
@@ -20,7 +20,7 @@ public protocol Configuration: Sendable {
 ///
 /// - Note: This struct is frozen and cannot be extended with new stored properties.
 @frozen
-@available(iOS 12.0, macOS 10.14, tvOS 12.0, watchOS 5.0, *)
+@available(iOS 13.0, macOS 13, tvOS 13.0, watchOS 6.0, *)
 public struct NetworkConfiguration: Configuration, Sendable {
     
     /// The underlying `URLSessionConfiguration` instance.
@@ -38,7 +38,7 @@ public struct NetworkConfiguration: Configuration, Sendable {
     }
 }
 
-@available(iOS 12.0, macOS 10.14, tvOS 12.0, watchOS 5.0, *)
+@available(iOS 13.0, macOS 13, tvOS 13.0, watchOS 6.0, *)
 public extension Configuration where Self == NetworkConfiguration {
         
     /// Sets a network header.

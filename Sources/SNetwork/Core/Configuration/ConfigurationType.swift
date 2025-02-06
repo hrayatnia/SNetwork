@@ -24,7 +24,7 @@ import Foundation
 /// let config = configType.makeConfiguration()
 /// ```
 @frozen
-@available(iOS 12.0, macOS 10.14, tvOS 12.0, watchOS 5.0, *)
+@available(iOS 13.0, macOS 13, tvOS 13.0, watchOS 6.0, *)
 public enum ConfigurationType: Equatable, Sendable {
     
     /// The default configuration.

@@ -10,7 +10,7 @@
 /// It allows for the dynamic manipulation of headers, including adding, removing, and retrieving them.
 /// This protocol is designed to be used with network request headers or any context where a dictionary of headers is required.
 @dynamicMemberLookup
-@available(iOS 12.0, macOS 10.14, tvOS 12.0, *)
+@available(iOS 13.0, macOS 13, tvOS 13.0, watchOS 6.0, *)
 public protocol NetworkHeader: ~Copyable, Sendable {
 
     /// The type used as the key for headers. This should conform to `StringProtocol`.
@@ -21,7 +21,7 @@ public protocol NetworkHeader: ~Copyable, Sendable {
     var headers: [Key: any Sendable & Hashable] { get set }
 }
 
-@available(iOS 12.0, macOS 10.14, tvOS 12.0, *)
+@available(iOS 13.0, macOS 13, tvOS 13.0, watchOS 6.0, *)
 extension NetworkHeader {
 
     /// Accessor for dynamically retrieving or setting header values using a key.

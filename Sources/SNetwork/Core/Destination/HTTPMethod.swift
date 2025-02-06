@@ -7,7 +7,7 @@
 
 @frozen
 
-@available(iOS 12.0, macOS 10.14, tvOS 12.0, watchOS 5.0, *)
+@available(iOS 13.0, macOS 13, tvOS 13.0, watchOS 6.0, *)
 public enum HTTPMethod: String {
     /// The HTTP GET method.
     case GET = "GET"
@@ -28,7 +28,7 @@ public enum HTTPMethod: String {
     case PATCH = "PATCH"
 }
 
-@available(iOS 12.0, macOS 10.14, tvOS 12.0, watchOS 5.0, *)
+@available(iOS 13.0, macOS 13, tvOS 13.0, watchOS 6.0, *)
 extension HTTPMethod: Addressable {
     /// Sets the HTTP method for the request.
     ///

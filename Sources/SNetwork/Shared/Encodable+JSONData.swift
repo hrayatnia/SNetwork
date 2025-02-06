@@ -7,6 +7,7 @@
 
 import Foundation
 
+@available(iOS 13.0, macOS 13, tvOS 13.0, watchOS 6.0, *)
 public extension Encodable {
     /// Encodes the object into `Data` using the provided encoder.
     ///

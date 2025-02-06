@@ -7,16 +7,18 @@
 
 import Foundation
 
-
+@available(iOS 13.0, macOS 13, tvOS 13.0, watchOS 6.0, *)
 public protocol RestValidator: Validator, Sendable {}
 
+@available(iOS 13.0, macOS 13, tvOS 13.0, watchOS 6.0, *)
 public protocol RestRequestValidator: RestValidator, Sendable where Input: Destination {
     func validateAny(_ value: Any) throws
 }
 
-
+@available(iOS 13.0, macOS 13, tvOS 13.0, watchOS 6.0, *)
 public protocol RestResponseValidator: RestValidator, Sendable {}
 
+@available(iOS 13.0, macOS 13, tvOS 13.0, watchOS 6.0, *)
 public protocol RestResponseHeaderValidator: RestResponseValidator, Sendable {
     func validateAny(_ value: Any) throws
 }
