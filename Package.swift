@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "SNetwork",
-    platforms: [.macOS(.v10_15), .iOS(.v12), .tvOS(.v12), .watchOS(.v5)],
+    platforms: [.macOS(.v13), .iOS(.v13), .tvOS(.v13), .watchOS(.v6)],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
