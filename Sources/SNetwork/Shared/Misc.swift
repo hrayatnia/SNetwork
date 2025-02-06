@@ -15,15 +15,13 @@ public extension NSMutableURLRequest {
 
 
 public extension String {
-    var asUrl: URL? {
-        URL(string: self)
-    }
     
-    var destination: Destination {
-        guard let asUrl else {
+    
+    func destination(_ baseURL: URL? = nil) -> Destination {
+        guard let url = baseURL?.appendingPathComponent(self) else {
             preconditionFailure("Invalid URL String")
             
         }
-        return NSMutableURLRequest(url: asUrl)
+        return NSMutableURLRequest(url: url)
     }
 }

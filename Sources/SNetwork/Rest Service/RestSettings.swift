@@ -8,21 +8,16 @@ import Foundation
 
 public struct RestSettings<DecoderType: Sendable>: Settings, Sendable {
     
+    typealias ValidatorType = RestValidator
     var baseURL: URL
-    var configuration: Configuration
-    var headers: any NetworkHeader
     var decoder: DecoderType
-    var validator: [any Validator]
+    var validator: [any RestValidator]
     
     init(baseURL: URL,
          decoder: DecoderType,
          validator: [any RestValidator] = [RestStatusCodeValidator(),
-                                           RestURLRequestValidator()],
-         configuration: Configuration = NetworkConfiguration(),
-         headers: any NetworkHeader = RestNetworkHeader()) {
+                                           RestURLRequestValidator()]) {
         self.baseURL = baseURL
-        self.configuration = configuration
-        self.headers = headers
         self.decoder = decoder
         self.validator = validator
     }

@@ -32,4 +32,9 @@ extension Destination: @unchecked @retroactive Sendable {
     public func applying<T: Addressable>(_ requestable: T) -> Destination {
         return requestable.apply(to: self)
     }
+    
+    
+    internal var asURLRequest: URLRequest {
+        return self as URLRequest
+    }
 }

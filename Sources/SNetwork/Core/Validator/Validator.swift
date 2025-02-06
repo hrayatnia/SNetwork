@@ -5,12 +5,12 @@
 //  Created by Sam Rayatnia on 06.02.25.
 //
 
-protocol Validator: Sendable {
+public protocol Validator: Sendable {
     associatedtype Input
     func validate(_ value: Input) throws
 }
 
-extension Validator {
+public extension Validator {
     func isValid(_ value: Input) -> Bool {
         do {
             try self.validate(value)

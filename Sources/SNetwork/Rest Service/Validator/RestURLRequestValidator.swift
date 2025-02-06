@@ -7,11 +7,9 @@
 
 import Foundation
 
-public struct RestURLRequestValidator: RestValidator {
-    var isRequest: Bool = true
+public struct RestURLRequestValidator: RestRequestValidator {
     
-    
-    func validate(_ value: Destination) throws {
+    public func validate(_ value: Destination) throws {
         guard let url = value.url,
         let scheme = url.scheme,
         let host = url.host,

@@ -7,12 +7,12 @@
 
 import Foundation
 
-public struct RestStatusCodeValidator: RestValidator {
-    var isRequest: Bool = false
+public struct RestStatusCodeValidator: RestResponseValidator {
+    public var isRequest: Bool = false
     
-    typealias Input = (Int, URL)
+    public typealias Input = (Int, URL)
 
-    func validate(_ value: Input) throws {
+    public func validate(_ value: Input) throws {
         let (statusCode, url) = value
         guard let status = HTTPStatusCode(rawValue: statusCode) else {
             throw URLError(.badServerResponse)

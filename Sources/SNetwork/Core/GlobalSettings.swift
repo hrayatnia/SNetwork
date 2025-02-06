@@ -7,10 +7,9 @@
 import Foundation
 
 protocol Settings: Sendable {
+    associatedtype ValidatorType
     var baseURL: URL { get }
-    var configuration: Configuration { get }
-    var headers: any NetworkHeader { get }
-    var validator: Array<any Validator> { get }
+    var validator: Array<ValidatorType> { get }
 }
 
 

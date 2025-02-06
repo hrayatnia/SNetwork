@@ -20,12 +20,47 @@ public struct NetworkSession: Session {
     
     public let configuration: ConfigType
     
-    private let session: URLSession
+    internal let session: URLSession
     
     init(configuration: ConfigType) {
         self.session =  URLSession(configuration: configuration.configuration)
         self.configuration = configuration
     }
+    
+    public func set(_ headers: some NetworkHeader) {
+        configuration.set(headers)
+    }
+    
+//    public func dataTask<T>(with request: URLRequest,
+//                            decoder: JSONDecoder = .init(),
+//                            completionHandler: @escaping (Result<T, Error>) -> Void) -> URLSessionDataTask where T : Decodable {
+//        return session.dataTask(with: request) { data, response, error in
+//            if let error = error {
+//                completionHandler(.failure(error))
+//                return
+//            }
+//            
+//            guard let data = data else {
+//                fatalError()
+//            }
+//            
+//            completionHandler(.success(try! decoder.decode(T.self, from: data)))
+//      
+//        }
+//    }
+//    
+//    
+//    public func invalidateAndCancel() {
+//        session.invalidateAndCancel()
+//    }
+//    
+//    public func finishTasksAndInvalidate() {
+//        session.finishTasksAndInvalidate()
+//    }
+//    
+//    public func flush() async {
+//        await session.flush()
+//    }
     
     
 }
