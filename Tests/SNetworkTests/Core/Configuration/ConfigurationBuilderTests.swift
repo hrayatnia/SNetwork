@@ -136,6 +136,6 @@ struct TestNetworkHeader: NetworkHeader {
         case test
     }
     
-    var headers: [String : AnyHashable]  = [TestNetworkHeaderKey.test.rawValue: ""]
+    var headers: [String : any Sendable & Hashable]  = [TestNetworkHeaderKey.test.rawValue: ""]
     
 }

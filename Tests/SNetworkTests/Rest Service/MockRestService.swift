@@ -10,7 +10,6 @@ import Foundation
 
 
 internal struct MockRestService: RestService {
-    var session: NetworkSession = NetworkSession.shared
     typealias Response = RestTestResponse
     private(set) internal var request: String
     let destination: SNetwork.Destination = "https://google.com".destination
