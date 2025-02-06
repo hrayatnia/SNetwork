@@ -15,6 +15,12 @@ public struct RestNetworkHeader: NetworkHeader {
         RestHeaderKeyValue.accept.key: RestHeaderKeyValue.contentType.rawValue
     ]
     
+    public init(headers: [Key : any Sendable & Hashable]) {
+        self.headers = headers
+    }
+    
+    public init() {}
+    
     @frozen
     private enum RestHeaderKeyValue: String {
         case contentType = "Application/JSON"
