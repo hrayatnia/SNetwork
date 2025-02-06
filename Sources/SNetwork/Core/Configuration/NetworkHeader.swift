@@ -22,7 +22,7 @@ public protocol NetworkHeader: ~Copyable, Sendable {
 }
 
 @available(iOS 13.0, macOS 13, tvOS 13.0, watchOS 6.0, *)
-extension NetworkHeader {
+public extension NetworkHeader {
 
     /// Accessor for dynamically retrieving or setting header values using a key.
     ///
