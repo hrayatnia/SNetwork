@@ -17,7 +17,11 @@ public struct RestStatusCodeValidator: RestResponseValidator {
         guard let status = HTTPStatusCode(rawValue: statusCode) else {
             throw URLError(.badServerResponse)
         }
-        try status.validate(url: url)
+        do {
+            try status.validate(url: url)
+        } catch {
+            throw error
+        }
     }
 }
 
