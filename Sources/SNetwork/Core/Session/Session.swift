@@ -22,7 +22,7 @@ public struct NetworkSession: Session {
     
     internal let session: URLSession
     
-    init(configuration: ConfigType) {
+    public init(configuration: ConfigType) {
         self.session =  URLSession(configuration: configuration.configuration)
         self.configuration = configuration
     }

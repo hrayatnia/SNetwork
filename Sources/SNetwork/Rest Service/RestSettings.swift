@@ -14,7 +14,7 @@ public struct RestSettings<DecoderType: Sendable>: Settings, Sendable {
     var decoder: DecoderType
     var validator: [any RestValidator]
     
-    init(baseURL: URL,
+    public init(baseURL: URL,
          decoder: DecoderType,
          validator: [any RestValidator] = [RestStatusCodeValidator(),
                                            RestURLRequestValidator()]) {
@@ -23,7 +23,7 @@ public struct RestSettings<DecoderType: Sendable>: Settings, Sendable {
         self.validator = validator
     }
     
-    init(baseURL: URL) where DecoderType == JSONDecoder {
+    public init(baseURL: URL) where DecoderType == JSONDecoder {
         self.init(baseURL: baseURL, decoder: JSONDecoder())
         self.decoder = _jsonDecoder
     }
