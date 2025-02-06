@@ -32,7 +32,7 @@ public struct RestSettings<DecoderType: Sendable>: Settings, Sendable {
     private var _jsonDecoder: JSONDecoder {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
-        if #available(macOS 12.0, *) {
+        if #available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *) {
             decoder.allowsJSON5 = true
         } else {
         }
