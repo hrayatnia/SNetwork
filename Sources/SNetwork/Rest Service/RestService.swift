@@ -74,5 +74,9 @@ public extension RestService {
         return settings
     }
     
+    var baseURL: URL {
+        settings.baseURL
+    }
+    
 }
 
