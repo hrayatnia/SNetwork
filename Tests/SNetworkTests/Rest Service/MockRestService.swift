@@ -5,20 +5,20 @@
 //  Created by Sam Rayatnia on 05.02.25.
 //
 
-import Testing
+import Foundation
 @testable import SNetwork
 
 
-internal struct TestRestService: RestService {
+internal struct MockRestService: RestService {
+    var session: NetworkSession = NetworkSession.shared
     typealias Response = RestTestResponse
     private(set) internal var request: String
-    let destination: String
+    let destination: SNetwork.Destination = "https://google.com".destination
     
-    
-    func send() async throws -> Response {
-        try await Task.sleep(nanoseconds: 100_000_000)
-        return .init(text: "")
+    func send() async throws -> RestTestResponse {
+        return .init(text: "Hello World")
     }
+    
     
 }
 
@@ -26,3 +26,6 @@ internal struct TestRestService: RestService {
 internal struct RestTestResponse: Decodable, Sendable {
     let text: String
 }
+
+
+

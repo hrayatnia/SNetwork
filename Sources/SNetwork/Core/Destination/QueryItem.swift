@@ -11,7 +11,7 @@ import Foundation
 public typealias QueryItem = URLQueryItem
 
 @available(iOS 12.0, macOS 10.14, tvOS 12.0, watchOS 5.0, *)
-extension QueryItem: Requestable {
+extension QueryItem: Addressable {
     
     /// Adds the query item to the request's URL components.
     ///
@@ -30,7 +30,7 @@ extension QueryItem: Requestable {
     /// let modifiedRequest = queryItem.apply(to: request)
     /// // The modifiedRequest's URL will be "https://api.example.com?page=1"
     /// ```
-    public func apply(to request: Request) -> Request {
+    public func apply(to request: Destination) -> Destination {
         guard var urlComponents = URLComponents(url: request.url ?? URL(string: "")!, resolvingAgainstBaseURL: false) else {
             return request // Return the original request if URLComponents can't be created
         }

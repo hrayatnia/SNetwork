@@ -12,17 +12,6 @@ import Foundation
 @Suite("Configuration Builder Tests")
 struct ConfigurationBuilderTests {
     
-    @Test("build default configuration")
-    func buildDefaultConfiguration() {
-        var configuration: NetworkConfiguration = .init()
-        #expect(configuration.type == .default)
-        configuration = .init(type: .ephemeral)
-        #expect(configuration.type == .ephemeral)
-        configuration = .init(type: .background(""))
-        #expect(configuration.type == ConfigurationType.background(""))
-        
-    }
-    
     
     @Test("header setting test")
     func testSetHeader() {

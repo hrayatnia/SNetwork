@@ -11,7 +11,7 @@ import Foundation
 public typealias URIPath = String
 
 @available(iOS 12.0, macOS 10.14, tvOS 12.0, watchOS 5.0, *)
-extension URIPath: Requestable {
+extension URIPath: Addressable {
     
     /// Appends the URI path component to the request's URL.
     ///
@@ -29,11 +29,10 @@ extension URIPath: Requestable {
     /// let modifiedRequest = uriPath.apply(to: request)
     /// // The modifiedRequest's URL will be "https://api.example.com/users"
     /// ```
-    public func apply(to request: Request) -> Request {
+    public func apply(to request: Destination) -> Destination {
         guard var url = request.url else { return request }
         url.appendPathComponent(self)
-        
-        var modifiedRequest = request
+        let modifiedRequest = request
         modifiedRequest.url = url
         return modifiedRequest
     }

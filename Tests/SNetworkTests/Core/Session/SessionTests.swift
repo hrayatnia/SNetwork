@@ -15,8 +15,7 @@ public struct SessionTests {
     
     @Test("")
     func testSessionCreation() {
-        var session = NetworkSession(session: URLSession.shared,
-                                     configuration: .init(type: .default))
+        var session = NetworkSession(configuration: .init())
     }
     
 }

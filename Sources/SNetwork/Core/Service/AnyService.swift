@@ -39,9 +39,12 @@ public protocol AnyService: ~Copyable, Sendable {
     /// - Returns: A `Response` instance upon successful processing of the request.
     /// - Throws: An error if the request cannot be processed.
     func send() async throws -> Response
+   
 }
 
 public extension AnyService {
+    
+    
     /// Sends the request asynchronously and returns a response wrapped in a `Task`.
     ///
     /// This method creates a detached task that executes the `send` operation.

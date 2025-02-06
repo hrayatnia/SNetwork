@@ -8,10 +8,10 @@
 import Foundation
 
 @available(iOS 12.0, macOS 10.14, tvOS 12.0, *)
-public typealias Request = URLRequest
+public typealias Destination = NSMutableURLRequest
 
 @available(iOS 12.0, macOS 10.14, tvOS 12.0, *)
-extension Request {
+extension Destination: @unchecked @retroactive Sendable {
     /// Mutates a request by adding data to it.
     ///
     /// This method allows the modification of a `Request` by applying an object that conforms to the `Requestable` protocol.
@@ -29,7 +29,7 @@ extension Request {
     /// // The modifiedRequest will have the data as its HTTP body
     /// ```
     @discardableResult
-    public func applying<T: Requestable>(_ requestable: T) -> Request {
+    public func applying<T: Addressable>(_ requestable: T) -> Destination {
         return requestable.apply(to: self)
     }
 }

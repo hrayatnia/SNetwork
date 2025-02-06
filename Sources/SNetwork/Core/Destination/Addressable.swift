@@ -8,7 +8,7 @@
 import Foundation
 
 @available(iOS 12.0, macOS 10.14, tvOS 12.0, *)
-public protocol Requestable {
+public protocol Addressable {
     /// Applies a transformation to a request.
     ///
     /// This method defines the required behavior for types that modify or transform a `Request`.
@@ -22,11 +22,11 @@ public protocol Requestable {
     /// ```swift
     /// let modifiedRequest = someRequestableObject.apply(to: originalRequest)
     /// ```
-    func apply(to request: Request) -> Request
+    func apply(to request: Destination) -> Destination
 }
 
 @available(iOS 12.0, macOS 10.14, tvOS 12.0, *)
-extension Data: Requestable {
+extension Data: Addressable {
     /// Appends the data as the HTTP body to the request.
     ///
     /// This method adds the `Data` as the HTTP body of the provided `Request` object.
@@ -42,7 +42,7 @@ extension Data: Requestable {
     /// let modifiedRequest = data.apply(to: originalRequest)
     /// // The modifiedRequest will have the data as its HTTP body
     /// ```
-    public func apply(to request: Request) -> Request {
+    public func apply(to request: Destination) -> Destination {
         var modifiedRequest = request
         modifiedRequest.httpBody = self
         return modifiedRequest

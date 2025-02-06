@@ -29,7 +29,7 @@ public enum HTTPMethod: String {
 }
 
 @available(iOS 12.0, macOS 10.14, tvOS 12.0, watchOS 5.0, *)
-extension HTTPMethod: Requestable {
+extension HTTPMethod: Addressable {
     /// Sets the HTTP method for the request.
     ///
     /// This method applies the HTTP method (e.g., GET, POST, PUT, etc.) to the provided `Request` by setting its `httpMethod` property.
@@ -45,7 +45,7 @@ extension HTTPMethod: Requestable {
     /// let modifiedRequest = method.apply(to: request)
     /// // The modifiedRequest will have its HTTP method set to "POST"
     /// ```
-    public func apply(to request: Request) -> Request {
+    public func apply(to request: Destination) -> Destination {
         var modifiedRequest = request
         modifiedRequest.httpMethod = self.rawValue
         return request

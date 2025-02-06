@@ -11,7 +11,6 @@ import Foundation
 @available(iOS 12.0, macOS 10.14, tvOS 12.0, watchOS 5.0, *)
 public protocol Configuration: Sendable {
     var configuration: URLSessionConfiguration { get }
-    var type: ConfigurationType { get }
 }
 
 /// A structure that provides a configurable wrapper around `URLSessionConfiguration`.
@@ -28,7 +27,7 @@ public struct NetworkConfiguration: Configuration, Sendable {
     fileprivate(set) public var configuration: URLSessionConfiguration
     
     /// The type of configuration being used.
-    public let type: ConfigurationType
+    private let type: ConfigurationType
     
     /// Initializes a new configuration with a specified type.
     ///

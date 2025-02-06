@@ -26,7 +26,7 @@ struct RequestableTests {
             return
         }
         
-        var request = URLRequest(url: url)
+        var request = Destination(url: url)
         request = request.applying(HTTPMethod.GET)
         
         #expect(request.url == url)
@@ -36,7 +36,7 @@ struct RequestableTests {
     @Test
     func queryItemTest() {
         let baseURL = URL(string: "https://api.example.com")!
-        var request = URLRequest(url: baseURL)
+        var request = Destination(url: baseURL)
         let queryItem = URLQueryItem(name: "page", value: "1")
         
         request = queryItem.apply(to: request)
@@ -47,7 +47,7 @@ struct RequestableTests {
     @Test
     func dataRequestTest() {
         let baseURL = URL(string: "https://api.example.com")!
-        var request = URLRequest(url: baseURL)
+        var request = Destination(url: baseURL)
         let requestData = "test body".data(using: .utf8)!
         
         request = requestData.apply(to: request)
@@ -58,7 +58,7 @@ struct RequestableTests {
     @Test
     func uriPathTest() {
         let baseURL = URL(string: "https://api.example.com")!
-        var request = URLRequest(url: baseURL)
+        var request = Destination(url: baseURL)
         let uriPath: URIPath = "/users"
         
         request = uriPath.apply(to: request)
